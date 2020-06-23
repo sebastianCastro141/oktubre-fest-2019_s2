@@ -1,0 +1,58 @@
+import personas.*
+import marcas.*
+import jarras.*
+test "gustos y total de alcohol aleman" {
+
+ const rubia = new CervezaRubia (contenidoLupulo = 5, paisDeFabricacion = "holanda", graduacion = 9)
+ reglaMundial.graduacionReglamentaria(7)
+ const negra = new CervezaNegra(contenidoLupulo=5, paisDeFabricacion = "belgica", graduacion = 10) 
+ const roja = new CervezaRoja (contenidoLupulo = 8, paisDeFabricacion = "argentina", graduacion = 14)
+ 
+ const jarra1 = new Jarra (capacidad = 1, marca = rubia)
+ const jarra2 = new Jarra (capacidad = 0.5, marca = negra)
+ const jarra3 = new Jarra (capacidad = 1.5, marca = roja)
+ const aleman = new Alemanes (peso = 80, jarrasCompradas = [jarra1,jarra2,jarra3], escuchaMusicaTradicional = true, nivelDeAguante = 50) 
+ 
+
+	assert.equals(0.09,jarra1.contenidoDeAlcohol())
+	assert.equals(0.035,jarra2.contenidoDeAlcohol())
+	assert.equals(0.13125,jarra3.contenidoDeAlcohol())
+	assert.equals(0.25625,aleman.totalDeAlcohol())
+	assert.that(aleman.estaEbria())
+	assert.that(aleman.leGustaEstaMarca (rubia))
+	assert.that(aleman.leGustaEstaMarca (negra))
+	assert.that(aleman.leGustaEstaMarca (roja))
+
+}
+
+test "checos"
+{
+ const rubia = new CervezaRubia (contenidoLupulo = 5, paisDeFabricacion = "holanda", graduacion = 9)
+ reglaMundial.graduacionReglamentaria(7)
+ const negra = new CervezaNegra(contenidoLupulo=5, paisDeFabricacion = "belgica", graduacion = 10) 
+ const roja = new CervezaRoja (contenidoLupulo = 8, paisDeFabricacion = "argentina", graduacion = 14)
+ 
+ const jarra1 = new Jarra (capacidad = 1, marca = rubia)
+ const jarra2 = new Jarra (capacidad = 0.5, marca = negra)
+ const jarra3 = new Jarra (capacidad = 1.5, marca = roja)
+ const checo = new Checo (peso = 80, jarrasCompradas = [jarra1,jarra2,jarra3], escuchaMusicaTradicional = true, nivelDeAguante = 50)
+ assert.that(checo.leGustaEstaMarca(rubia))
+ assert.notThat(checo.leGustaEstaMarca(negra))
+ assert.that(checo.leGustaEstaMarca(roja))
+}
+
+test "belgas"
+{
+ const rubia = new CervezaRubia (contenidoLupulo = 5, paisDeFabricacion = "holanda", graduacion = 9)
+ reglaMundial.graduacionReglamentaria(7)
+ const negra = new CervezaNegra(contenidoLupulo=5, paisDeFabricacion = "belgica", graduacion = 10) 
+ const roja = new CervezaRoja (contenidoLupulo = 8, paisDeFabricacion = "argentina", graduacion = 14)
+ 
+ const jarra1 = new Jarra (capacidad = 1, marca = rubia)
+ const jarra2 = new Jarra (capacidad = 0.5, marca = negra)
+ const jarra3 = new Jarra (capacidad = 1.5, marca = roja)
+ const belga = new Belga (peso = 80, jarrasCompradas = [jarra1,jarra2,jarra3], escuchaMusicaTradicional = true, nivelDeAguante = 50)
+ assert.that(belga.leGustaEstaMarca(rubia))
+ assert.that(belga.leGustaEstaMarca(negra))
+ assert.that(belga.leGustaEstaMarca(roja))
+}
